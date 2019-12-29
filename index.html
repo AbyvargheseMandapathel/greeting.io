@@ -1,27 +1,36 @@
-<html>
- <head></head> 
- <body>
- 
-  <title></title> 
-  <style type="text/css">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
         body
         {
             font-family: Arial;
             font-size: 10pt;
         }
-    </style> Name: 
-  <input type="text" id="txtName" name="Name" value=""> 
-  <br> 
-  <br> Technology: 
-  <select id="ddlTechnolgy" name="Technology"> <option value="ASP.Net">ASP.Net</option> <option value="PHP">PHP</option> <option value="JSP">JSP</option> </select> 
-  <input type="button" value="Send" onclick="Send()"> 
-  <script type="text/javascript">
-        function Send() {
-            var name = document.getElementById("txtName").value;
-            var tech = document.getElementById("ddlTechnolgy").value;
-            var url = "default.html?name=" + encodeURIComponent(name) + "&technology=" + encodeURIComponent(tech);
-            window.location.href = url;
+    </style>
+</head>
+<body>
+    <span id="lblData"></span>
+    <script type="text/javascript">
+        var queryString = new Array();
+        window.onload = function () {
+            if (queryString.length == 0) {
+                if (window.location.search.split('?').length > 1) {
+                    var params = window.location.search.split('?')[1].split('&');
+                    for (var i = 0; i < params.length; i++) {
+                        var key = params[i].split('=')[0];
+                        var value = decodeURIComponent(params[i].split('=')[1]);
+                        queryString[key] = value;
+                    }
+                }
+            }
+            if (queryString["name"] != null && queryString["technology"] != null) {
+                var data = "<u>Values from QueryString</u><br /><br />";
+                data += "<b>Name:</b> " + queryString["name"] + " <b>Technology:</b> " + queryString["technology"];
+                document.getElementById("lblData").innerHTML = data;
+            }
         };
-    </script> 
- </body>
+    </script>
+</body>
 </html>
