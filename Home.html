@@ -3,7 +3,38 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
+<style> 
+
+    
+        body
+        {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+    </style>
+</head>
+<body>
+    <span id="lblData"></span>
+    <script type="text/javascript">
+        var queryString = new Array();
+        window.onload = function () {
+            if (queryString.length == 0) {
+                if (window.location.search.split('?').length > 1) {
+                    var params = window.location.search.split('?')[1].split('&');
+                    for (var i = 0; i < params.length; i++) {
+                        var key = params[i].split('=')[0];
+                        var value = decodeURIComponent(params[i].split('=')[1]);
+                        queryString[key] = value;
+                    }
+                }
+            }
+            if (queryString["name"] != null && queryString["technology"] != null) {
+                var data = "";
+                data += " " + queryString["name"];
+                document.getElementById("lblData").innerHTML = data;
+            }
+        };
+    </script>
 h2 {
    color: white;
    }
