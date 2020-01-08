@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-    <span id="lblData"></span>
+    <span id="yourname"></span>
     <script type="text/javascript">
         var queryString = new Array();
         window.onload = function () {
@@ -25,10 +25,10 @@
                     }
                 }
             }
-            if (queryString["name"] != null && queryString["technology"] != null) {
+            if (queryString["name"] != null) {
                 var data = "";
                 data += " " + queryString["name"];
-                document.getElementById("lblData").innerHTML = data;
+                document.getElementById("yourname").innerHTML = data;
             }
         };
     </script>
